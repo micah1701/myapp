@@ -87,6 +87,21 @@
         destinationType: destinationType.FILE_URI,
         sourceType: source });
     }
+    
+    
+    
+    function lottoPhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(lottoPhoto_send, onFail, { quality: 50 });
+    }
+    
+    function lottoPhoto_send(imageData)
+    {
+    	document.body.innerHTML += '<form id="sendPhoto" action="http://elottoledger.com/domains/colbiemurray.com/ocrapiservice/post/" method="post"><input type="hidden" name="base64img" value="'+ imageData +'"></form>';
+		document.getElementById("sendPhoto").submit();	
+		alert("ok, I sent your photo");
+    }
+    
 
     // Called if something bad happens.
     // 
@@ -148,7 +163,9 @@ function geolocateme(){
     <br>
     <button onclick="scan();">Scan!</button><br>
     <br>
-    <button onclick="geolocateme()">GeoLocate</button>
+    <button onclick="geolocateme()">GeoLocate</button><br>
+    <br>
+    <button onclick="lottoPhoto()">send photo to server</button>
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   </body>
