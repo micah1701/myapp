@@ -103,7 +103,7 @@
     
     function lottoPhoto_send(imageData)
     {	
-    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/', {base64img:encodeURIComponent(imageData)}, function(data)
+    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/', {base64img:imageData}, function(data)
     	{
     		alert(data);
     	});
