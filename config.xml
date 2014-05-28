@@ -31,6 +31,10 @@
     <gap:plugin name="org.apache.cordova.camera" />
 	<gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.file" />
+    <gap:plugin name="org.apache.cordova.vibration" />
+
+	<gap:plugin name="com.phonegap.plugins.barcodescanner" version="1.1.0" /> <!-- 3rd party plugin -->
+
 <!--
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
@@ -46,7 +50,7 @@
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="org.apache.cordova.vibration" />
+    
 -->
     
     <feature name="http://api.phonegap.com/1.0/camera"/>
