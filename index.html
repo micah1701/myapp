@@ -8,7 +8,7 @@
 
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 <script type="text/javascript" charset="utf-8">
-/*
+
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value 
 
@@ -92,12 +92,14 @@
     function onFail(message) {
       alert('Failed because: ' + message);
     }
- */   
+    
     function vibrate(milliseconds)
     {
     	navigator.notification.vibrate(milliseconds);
     }
 
+	vibrate(500);
+	setTimeout(function(){ capturePhotoEdit(); }),2000);
     </script>
   </head>
   <body>
