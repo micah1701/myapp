@@ -16,7 +16,9 @@
     <author href="https://micahj.com" email="micah.murray@gmail.com">
         Micah J. Murray
     </author>
-    
+
+	<preference name="phonegap-version" value="3.3.0" />    
+
     <!-- only build for android -->
     <gap:platform name="android" />
     
