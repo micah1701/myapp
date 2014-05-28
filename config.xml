@@ -16,6 +16,8 @@
     <author href="https://micahj.com" email="micah.murray@gmail.com">
         Micah J. Murray
     </author>
+    
+    <access origin="*" />
 
     <!-- only build for android -->
     <gap:platform name="android" />
