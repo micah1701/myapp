@@ -92,7 +92,13 @@
     
     function lottoPhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(lottoPhoto_send, onFail, { quality: 50 });
+      // DATA_URL : 0 returns base 64 encoded
+      navigator.camera.getPicture(lottoPhoto_send, onFail, 
+      	{ 
+	      	quality: 50, 
+	      	correctOrientation: 1, 
+	      	destinationType: {DATA_URL : 0}
+		});
     }
     
     function lottoPhoto_send(imageData)
