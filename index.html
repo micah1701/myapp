@@ -114,10 +114,27 @@
 	   );
 	}
 
-	vibrate(500);
+var onSuccess = function(position) {
+    alert('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + position.timestamp                + '\n');
+};
 
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
 
-
+function geolocateme(){
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+}
     </script>
   </head>
   <body>
@@ -129,7 +146,9 @@
     <br>
     <button onclick="vibrate(500);">vibrate</button><br>
     <br>
-    <button onclick="scan();">Scan!</button>
+    <button onclick="scan();">Scan!</button><br>
+    <br>
+    <button onclick="geolocateme()">GeoLocate</button>
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   </body>
