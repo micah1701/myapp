@@ -98,12 +98,18 @@
     
     function lottoPhoto_send(imageData)
     {	
-    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/',
-    			{base64img:imageData},
-    			function(data){
-    				alert(data);
+    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/', {base64img:imageData}, function(data)
+    	{
+    		alert(data);
     	});
-    	
+    }
+    
+    function lottoTest_send()
+    {
+    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/',{var:'hi'}, function(data)
+    	{
+    		alert(data);
+    	});	
     }
     
 
@@ -169,7 +175,11 @@ function geolocateme(){
     <br>
     <button onclick="geolocateme()">GeoLocate</button><br>
     <br>
-    <button onclick="lottoPhoto()">send photo to server</button>
+    <button onclick="lottoPhoto()">send photo to server</button><br>
+    <br>
+    
+    <button onclick="lottoTest_send()">test ajax post</button>
+    
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   </body>
