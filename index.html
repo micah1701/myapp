@@ -91,6 +91,11 @@
     function onFail(message) {
       alert('Failed because: ' + message);
     }
+    
+    function vibrate(milliseconds)
+    {
+    	navigator.notification.vibrate(milliseconds)
+    }
 
     </script>
   </head>
@@ -100,6 +105,8 @@
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
     <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+    <br>
+    <button onclick="vibrate(500);">vibrate</button>
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   </body>
