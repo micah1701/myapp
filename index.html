@@ -23,7 +23,6 @@
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
-        alert("phonegap is ready");
     }
 
     // Called when a photo is successfully retrieved
@@ -105,11 +104,23 @@
     }
     
     function lottoTest_send()
-    {
-    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/',{var:'hi'}, function(data)
-    	{
-    		alert(data);
-    	});	
+    { 	
+    	$.ajax({
+		   type: "POST",
+		   url: "http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/",
+		   contentType: "application/x-www-form-urlencoded; charset=utf-8",
+	//	   dataType: "json",
+		   data: {myvar:'some value'},
+		   crossDomain: true,
+		   cache: false,
+		   success: function(data) {
+		       alert("here is what was returned:\n"+data);
+		   },
+		   error: function(e) {
+		       alert('Error: ' + e.message);
+		   }
+		});
+   	
     }
     
 
