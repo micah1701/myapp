@@ -7,6 +7,7 @@
 	</title>
 
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#micah-myapp"></script>
 <script type="text/javascript" charset="utf-8">
 
@@ -96,10 +97,13 @@
     }
     
     function lottoPhoto_send(imageData)
-    {
-    	document.body.innerHTML += '<form id="sendPhoto" action="http://elottoledger.com/domains/colbiemurray.com/ocrapiservice/post/" method="post"><input type="hidden" name="base64img" value="'+ imageData +'"></form>';
-		document.getElementById("sendPhoto").submit();	
-		alert("ok, I sent your photo");
+    {	
+    	$.post('http://lottoledger.com/domains/colbiemurray.com/ocrapiservice/post/',
+    			{base64img:imageData},
+    			function(data){
+    				alert(data);
+    	});
+    	
     }
     
 
