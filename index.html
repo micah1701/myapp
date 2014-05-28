@@ -21,6 +21,7 @@
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
+        alert("phonegap is ready");
     }
 
     // Called when a photo is successfully retrieved
@@ -94,7 +95,7 @@
     
     function vibrate(milliseconds)
     {
-    	navigator.notification.vibrate(milliseconds)
+    	navigator.notification.vibrate(milliseconds);
     }
 
     </script>
