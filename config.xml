@@ -17,13 +17,9 @@
         Micah J. Murray
     </author>
 
-	<preference name="phonegap-version" value="3.3.0" />    
-
     <!-- only build for android -->
     <gap:platform name="android" />
     
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
-    		
     <feature name="http://api.phonegap.com/1.0/camera"/>
 	<feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
