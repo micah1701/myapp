@@ -213,8 +213,9 @@ function geolocateme(){
 }
 
 function geolocatenative(){
-	var geo = cordova.require('cordova/plugin/geolocation');
-	geo.getCurrentPosition(onSuccess2,fail,opts);
+//	var geo = cordova.require('cordova/plugin/geolocation');
+//	geo.getCurrentPosition(onSuccess2,onError, {enableHighAccuracy: true});
+	cordova.plugins.getCurrentPosition(onSuccess2, onError, {enableHighAccuracy: true});
 }
 
     </script>
@@ -242,7 +243,12 @@ function geolocatenative(){
     
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
+  
+  <br style="clear: both">
+  
     <div id="map_canvas" style="width: 45%; height: 125px; float: left"></div>
     <div id="map_canvas2" style="width: 45% height: 125px; float: right;"></div>
+  <br style="clear: both">
+
   </body>
 </html>
