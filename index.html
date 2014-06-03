@@ -183,7 +183,23 @@ var onSuccess = function(position)
                                             map: map,
                                             title: "You Are Here"
                                             });
-}
+};
+var onSuccess2 = function(position) 
+{
+	console.log(position);
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var map = new google.maps.Map(document.getElementById("map_canvas2"), {
+                                      zoom: 12,
+                                      center: latlng,
+                                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                                      });
+        
+    var marker = new google.maps.Marker({
+                                            position: latlng,
+                                            map: map,
+                                            title: "You Are Here"
+                                            });
+};
 
 // onError Callback receives a PositionError object
 //
@@ -195,6 +211,12 @@ function onError(error) {
 function geolocateme(){
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
 }
+
+function geolocatenative(){
+	var geo = cordova.require('cordova/plugin/geolocation');
+	geo.getCurrentPosition(onSuccess2,fail,opts);
+}
+
     </script>
   </head>
   <body>
@@ -208,7 +230,10 @@ function geolocateme(){
     <br>
     <button onclick="scan();">Scan!</button><br>
     <br>
-    <button onclick="geolocateme()">GeoLocate</button><br>
+    <button onclick="geolocateme()">GeoLocate HTML5</button><br>
+	<br>
+	<button onclick="geolocatenative()">GeoLocate Native</button><br>
+	
     <br>
     <button onclick="lottoPhoto()">send photo to server</button><br>
     <br>
@@ -217,6 +242,7 @@ function geolocateme(){
     
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
-    <div id="map_canvas" style="width: 100%; height: 200px"></div>
+    <div id="map_canvas" style="width: 45%; height: 125px; float: left"></div>
+    <div id="map_canvas2" style="width: 45% height: 125px; float: right;"></div>
   </body>
 </html>
