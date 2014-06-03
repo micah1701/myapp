@@ -156,7 +156,7 @@
 	   );
 	}
 
-var onSuccess = function(position) {
+var onSuccess_alert = function(position) {
     alert('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
@@ -166,6 +166,23 @@ var onSuccess = function(position) {
           'Speed: '             + position.coords.speed             + '\n' +
           'Timestamp: '         + position.timestamp                + '\n');
 };
+
+var onSuccess = function(position) 
+{
+	console.log(position);
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var map = new google.maps.Map(document.getElementById("map_canvas"), {
+                                      zoom: 12,
+                                      center: latlng,
+                                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                                      });
+        
+    var marker = new google.maps.Marker({
+                                            position: latlng,
+                                            map: map,
+                                            title: "You Are Here"
+                                            });
+}
 
 // onError Callback receives a PositionError object
 //
