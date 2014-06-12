@@ -255,9 +255,10 @@ function onNotificationGCM(e) {
 
 $(document).ready(function(){
 
-	    cordova.plugins.pushNotification.register(
-	        successHandler,
-	        errorHandler, {
+	    pushNotification.register(
+	        function(){ }, // success
+	        function(){ alert("error with GCM") },
+			{
 	            "senderID":"194446923215",  // google app project id
 	            "ecb":"onNotificationGCM"
 	        });
