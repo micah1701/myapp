@@ -253,17 +253,23 @@ function onNotificationGCM(e) {
   }
 }
 
+function GCMsuccessHandler (result) {
+    alert('result = ' + result);
+}
+function GCMerrorHandler (error) {
+    alert('error = ' + error);
+}
+
 var pushNotification;
 $(document).ready(function(){
 		
 		pushNotification = window.plugins.pushNotification;
 		
 	    pushNotification.register(
-	        function(){ alert("push: win"); }, // success
-	        function(){ alert("error with GCM"); }, // error
+	        GCMsuccessHandler, // success
+	        GCMerrorHandler, // error
 			{
-	         //   "senderID":"194446923215",  // google app project id
-	            "senderID": 'bad',
+	            "senderID":"194446923215",  // google app project id
 	            "ecb":"onNotificationGCM"
 	        });
 
