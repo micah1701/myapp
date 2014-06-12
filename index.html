@@ -199,8 +199,9 @@ function geolocateme(){
 
 
 // Android (note, see readme for iOS function)
-
 function onNotificationGCM(e) {
+	alert('GCM callback triggered!');
+	
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 
     switch( e.event )
@@ -256,6 +257,7 @@ $(document).ready(function(){
 	// register for push notifications
 	if ( device.platform == 'android' || device.platform == 'Android' )
 	{
+		alert('gonna try and register now');
 	    pushNotification.register(
 	        successHandler,
 	        errorHandler, {
@@ -299,12 +301,14 @@ $(document).ready(function(){
     
     <button onclick="lottoTest_send()">test ajax post</button>
     
-    <ul id="app-status-ul"></ul>
-    
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   
   <br style="clear: both">
+
+    <ul id="app-status-ul">
+    	<li>hmm...</li>
+    </ul>
   
     <div id="map_canvas" style="width: 100%; height: 250px;"></div>
   <br style="clear: both">
