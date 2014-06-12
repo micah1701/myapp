@@ -34,6 +34,8 @@
 	<gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    	
+    <gap:plugin name="com.phonegap.plugins.pushplugin" />	
 	
 	<gap:plugin name="org.apache.cordova.geolocation" />
 
