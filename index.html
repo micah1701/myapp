@@ -256,7 +256,7 @@ function onNotificationGCM(e) {
 var pushNotification;
 $(document).ready(function(){
 		
-		pushNotification = window.plugins.pushNotification;
+		pushNotification = cordova.plugins.pushNotification;
 		
 	    pushNotification.register(
 	        function(){ alert("push: win"); }, // success
