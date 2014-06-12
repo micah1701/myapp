@@ -255,9 +255,7 @@ function onNotificationGCM(e) {
 
 $(document).ready(function(){
 
-
-		alert('gonna try and register now');
-	    pushNotification.register(
+	    cordova.plugins.pushNotification.register(
 	        successHandler,
 	        errorHandler, {
 	            "senderID":"194446923215",  // google app project id
