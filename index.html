@@ -203,6 +203,7 @@ function onNotificationGCM(e) {
 	alert('GCM callback triggered!');
 	
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+    vibrate(500);
 
     switch( e.event )
     {
@@ -233,6 +234,7 @@ function onNotificationGCM(e) {
             if ( e.coldstart )
             {
                 $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+                $("#app-status-ul").append('<li>Your name is: '+e.myName);
             }
             else
             {
