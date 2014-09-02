@@ -286,6 +286,20 @@ $(document).ready(function(){
   </head>
   <body>
   	<h1>Micah's Test App!</h1>
+  	<hr>
+  	
+  	<div class="app"><!-- bluetooth demo code -->
+            <div id="ui">
+                <button id="connectButton">Connect</button>
+            </div>
+        <div id="message">Hello.</div>
+    </div>
+    <script>
+        app.initialize();
+    </script>
+    <!-- end of bluetooth demo code -->
+  	
+  	<hr>
     <button onclick="capturePhoto();">Capture Photo</button> <br>
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
