@@ -10,6 +10,9 @@
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCKLm37RXIidiDr2xogAP93as10aN-7vYo&sensor=false"></script>
 <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#micah-myapp"></script>
+
+<script type="text/javascript" src="blue.js"></script><!-- testing bluetoothy stuff -->
+
 <script type="text/javascript" charset="utf-8">
 
     var pictureSource;   // picture source
@@ -224,6 +227,7 @@ function onNotificationGCM(e) {
         if ( e.foreground )
         {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+            $("#app-status-ul").append('<li>Your name is: '+e.myName);
 
             // if the notification contains a soundname, play it.
             var my_media = new Media("/android_asset/www/"+e.soundname);
