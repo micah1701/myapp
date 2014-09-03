@@ -313,7 +313,6 @@ function bt_list()
   
 function bt_connect(macAddress)
 {
-    alert("connecting to "+ macAddress +"...");
     bluetoothSerial.connect(
         macAddress,  // device to connect to
         bt_connect_success,    // start listening if you succeed
@@ -321,15 +320,15 @@ function bt_connect(macAddress)
     ); 
 }
 
-    function bt_connect_fail(){
-        $(".bluetooth").append('could not connect to device, or connection lost');
+    function bt_connect_fail(data){
+        $(".bluetooth").append('could not connect to device, or connection lost.<br> '+ JSON.stringify(data) +'\n');
     }
     
     function bt_connect_success()
     {
         $(".bluetooth").append("connected!<hr>\n");
         bluetoothSerial.subscribe('\n', function (data) {
-            $(".bluetooth").append(data);
+            $(".bluetooth").append(JSON.stringify(data));
         });
     }
   
