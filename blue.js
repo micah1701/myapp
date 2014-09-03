@@ -36,6 +36,14 @@ var app = {
             // list the available BT ports:
             bluetoothSerial.list(
                 function(results) {
+                    
+                    var html = "<ul>\n";
+                    $(results).each(function(key,val){
+                        
+                        html+= '<li data-address="'+ val.address +'">'+ val.name +' - '+ val.address +'</li>\n';
+                    })
+                    html+= "</ul>";
+                    
                     app.display(JSON.stringify(results));
                 },
                 function(error) {
