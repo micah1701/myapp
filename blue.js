@@ -44,7 +44,8 @@ var app = {
                     })
                     html+= "</ul>";
                     
-                    app.display(JSON.stringify(results));
+                    app.display(html);
+                    //app.display(JSON.stringify(results));
                 },
                 function(error) {
                     app.display(JSON.stringify(error));
