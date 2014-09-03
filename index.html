@@ -299,7 +299,7 @@ function bt_list()
             
             var html = "<ul>\n";
             $(results).each(function(key,val){
-                html+= '<li onclick="bt_connect('+ val.address +')">'+ val.name +' - ('+ val.address +')</li>\n';
+                html+= '<li><a href="#" onclick="bt_connect('+ val.address +')">'+ val.name +'</a> - ('+ val.address +')</li>\n';
             })
             html+= "</ul>";
             $('.bluetooth').html(html);
