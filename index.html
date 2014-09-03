@@ -199,7 +199,6 @@ function geolocateme(){
 }
 
 
-
 // Android (note, see readme for iOS function)
 function onNotificationGCM(e) {
 	alert('GCM callback triggered!');
@@ -321,16 +320,28 @@ function bt_connect(macAddress)
 }
 
     function bt_connect_fail(data){
-        $(".bluetooth").append('could not connect to device, or connection lost.<br> '+ JSON.stringify(data) +'\n');
+        $(".bluetooth").append('could not connect to device, or connection lost.<br> '+ JSON.stringify(data) +'<br>');
     }
     
     function bt_connect_success()
     {
         $(".bluetooth").append("connected!<hr>\n");
-        bluetoothSerial.subscribe('\n', function (data) {
-            $(".bluetooth").append(JSON.stringify(data));
-        });
+    
+        var line_delimiter = "\n"; // "The callback is called with the data as soon as the delimiter string is read." - from the docs
+    //  var line_delimiter = 10; //ASCII line break    
+    
+        bluetoothSerial.subscribe(line_delimiter, bt_subscribe_success, bt_subscribe_fail);
     }
+    
+        function bt_subscribe_success(data)
+        {
+            $(".bluetooth").append("data: " + JSON.stringify(data) +"<br>\n");
+        }
+        
+        function bt_subscribe_fail(data)
+        {
+            $(".bluetooth").append("Could Not Subscribe :( <br>\n "+ JSON.stringify(data));
+        }
   
     </script>
   </head>
