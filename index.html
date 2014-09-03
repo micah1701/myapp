@@ -11,7 +11,6 @@
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCKLm37RXIidiDr2xogAP93as10aN-7vYo&sensor=false"></script>
 <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#micah-myapp"></script>
 
-<script type="text/javascript" src="blue.js"></script><!-- testing bluetoothy stuff -->
 
 <script type="text/javascript" charset="utf-8">
 
@@ -282,21 +281,65 @@ $(document).ready(function(){
 
 });
 
+
+function bt_list()
+{
+   if(!bluetoothSerial.isEnabled)
+   {
+       $("#bt_enabled").fadeIn('fast');
+       return false;
+   }
+   else
+   {
+       $("#bt_enabled").fadeOut(0);
+   }
+   
+   bluetoothSerial.list(
+        function(results) {
+            
+            var html = "<ul>\n";
+            $(results).each(function(key,val){
+                html+= '<li onclick="bt_connect('+ val.address +')">'+ val.name +' - ('+ val.address +')</li>\n';
+            })
+            html+= "</ul>";
+            $('.bluetooth').html(html);
+            
+        },
+        function(error) {
+            $('.bluetooth').html(JSON.stringify(error));
+        }  
+    );
+}
+  
+function bt_connect(macAddress)
+{
+    bluetoothSerial.connect(
+        macAddress,  // device to connect to
+        bt_connect_success,    // start listening if you succeed
+        bt_connect_fail    // show the error if you fail
+    ); 
+}
+
+function bt_connect_fail(){
+    $(".bluetooth").html('could not connect to device, or connection lost');
+}
+
+function bt_connect_success()
+{
+    bluetoothSerial.subscribe('\n', function (data) {
+        $(".bluetooth").append(data);
+    });
+
+}
+  
     </script>
   </head>
   <body>
   	<h1>Micah's Test App!</h1>
   	<hr>
   	
-  	<div class="app"><!-- bluetooth demo code -->
-            <div id="ui">
-                <button id="connectButton">Connect</button>
-            </div>
-        <div id="message">Hello.</div>
-    </div>
-    <script>
-        app.initialize();
-    </script>
+  	<div class="bluetooth"><!-- bluetooth demo code --></div>
+
     <!-- end of bluetooth demo code -->
   	
   	<hr>
@@ -313,7 +356,13 @@ $(document).ready(function(){
 	
     <br>
     <button onclick="lottoPhoto()">send photo to server</button><br>
+    
     <br>
+    <button onclick="listDevices()">List Bluetooth devices</button> 
+    <span id="bt_enabled" style="display: none">Bluetooth is not enabled</span>
+
+    <br><br>
+    
     
     <button onclick="lottoTest_send()">test ajax post</button>
     
