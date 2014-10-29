@@ -200,7 +200,8 @@ function geolocateme(){
 
 function callhander_checkin(gcm_regid)
 {
-    $.getJSON('http://callhandler.micahj.com/phone/check-in/',{number:'8608087914',gcm_regid:gcm_regid},function(data)
+    
+    $.getJSON('http://callhandler.micahj.com/phone/check-in/',{'number':'8608087914','gcm_regid':gcm_regid },function(data)
     {
         if(!data.success)
         {
@@ -224,12 +225,11 @@ function onNotificationGCM(e) {
     case 'registered':
         if ( e.regid.length > 0 )
         {
-            callhander_checkin(e.regid);
-            
             $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
             // set id to system to link id to known user for push notifications
-            $.get('http://micahj.com/code/gcm/send.php',{ regid: e.regid },function(){
-            });
+            $.get('http://micahj.com/code/gcm/send.php',{ regid: e.regid },function(){ });
+            
+            callhander_checkin(e.regid);
         }
     break;
 
@@ -276,7 +276,7 @@ function GCMsuccessHandler (result) {
     alert('GCM register result = ' + result);
 }
 function GCMerrorHandler (error) {
-    alert('error = ' + error);
+    alert('GCM error = ' + error);
 }
 
 var pushNotification;
@@ -284,13 +284,14 @@ $(document).ready(function(){
 		
 		pushNotification = window.plugins.pushNotification;
 		
-	    pushNotification.register(
-	        GCMsuccessHandler, // success
-	        GCMerrorHandler, // error
-			{
-	            "senderID":"194446923215",  // google app project id
-	            "ecb":"onNotificationGCM"
-	        });
+        pushNotification.register(
+            GCMsuccessHandler, // success
+            GCMerrorHandler, // error
+            {
+                "senderID":"194446923215",  // google app project id
+                "ecb":"onNotificationGCM"
+            }
+        );
 
 });
 
