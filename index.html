@@ -198,10 +198,27 @@ function geolocateme(){
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
 }
 
+function callhander_checkin(gcm_regid)
+{
+    $.JSONget('http://callhandler.micahj.com/phone/check-in',{number:'8608087914',gcm_regid:gcm_regid},function(data)
+    {
+        if(!data.success)
+        {
+            alert("tried to check into call handler app. got an error \n\n "+ data.error);
+            return false;
+        }
+        
+        $("#app-status-ul").append('<li>Checked into phone handler app. It say\'s your name is '+ data.name +'. The status of the regID update is '+ data.gcm_regid +'</li>');
+        
+    });
+
+}
+
 
 // Android (note, see readme for iOS function)
 function onNotificationGCM(e) {
-	alert('GCM callback triggered!');
+	
+	callhander_checkin(e.regid);
 	
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
     vibrate(500);
