@@ -200,7 +200,7 @@ function geolocateme(){
 
 function callhander_checkin(gcm_regid)
 {
-    $.JSONget('http://callhandler.micahj.com/phone/check-in',{number:'8608087914',gcm_regid:gcm_regid},function(data)
+    $.getJSON('http://callhandler.micahj.com/phone/check-in/',{number:'8608087914',gcm_regid:gcm_regid},function(data)
     {
         if(!data.success)
         {
@@ -217,8 +217,6 @@ function callhander_checkin(gcm_regid)
 
 // Android (note, see readme for iOS function)
 function onNotificationGCM(e) {
-	
-	callhander_checkin(e.regid);
 	
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
     vibrate(500);
@@ -276,7 +274,8 @@ function onNotificationGCM(e) {
 }
 
 function GCMsuccessHandler (result) {
-    alert('result = ' + result);
+    alert('GCM register result = ' + result);
+    callhander_checkin(result);
 }
 function GCMerrorHandler (error) {
     alert('error = ' + error);
