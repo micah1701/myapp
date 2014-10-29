@@ -209,9 +209,7 @@ function callhander_checkin(gcm_regid)
         }
         
         $("#app-status-ul").append('<li>Checked into phone handler app. It say\'s your name is '+ data.name +'. The status of the regID update is '+ data.gcm_regid +'</li>');
-        
     });
-
 }
 
 
@@ -226,10 +224,11 @@ function onNotificationGCM(e) {
     case 'registered':
         if ( e.regid.length > 0 )
         {
+            callhander_checkin(e.regid);
+            
             $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
             // set id to system to link id to known user for push notifications
             $.get('http://micahj.com/code/gcm/send.php',{ regid: e.regid },function(){
-            	
             });
         }
     break;
@@ -275,7 +274,6 @@ function onNotificationGCM(e) {
 
 function GCMsuccessHandler (result) {
     alert('GCM register result = ' + result);
-    callhander_checkin(result);
 }
 function GCMerrorHandler (error) {
     alert('error = ' + error);
