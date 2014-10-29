@@ -203,13 +203,13 @@ function callhander_checkin(gcm_regid)
     
     $.getJSON('http://callhandler.micahj.com/phone/check-in/',{'number':'8608087914','gcm_regid':gcm_regid },function(data)
     {
-        if(!data.success)
+        if(data.success !== true)
         {
             alert("tried to check into call handler app. got an error \n\n "+ data.error);
             return false;
         }
         
-        $("#app-status-ul").append('<li>Checked into phone handler app. It say\'s your name is '+ data.name +'. The status of the regID update is '+ data.gcm_regid +'</li>');
+        $("#app-status-ul").append('<li>Checked into phone handler app. It said your name is '+ data.name +'. The status of the regID update is '+ data.gcm_regid +'</li>');
     });
 }
 
