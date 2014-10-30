@@ -240,9 +240,6 @@ function onNotificationGCM(e) {
         {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
-            // if the notification contains a soundname, play it.
-            //var my_media = new Media("/android_asset/www/"+e.soundname);
-            //my_media.play();
         }
         else
         {  // otherwise we were launched because the user touched a notification in the notification tray.
@@ -256,7 +253,8 @@ function onNotificationGCM(e) {
             }
         }
 
-        $("#app-status-ul").append('<li>The caller is from: '+e.calldata.FromCity +'<br>callSid: '+ e.calldata.CallSid +'</li>');
+        $("#app-status-ul").append('<li>The caller is from: '+e.payload.calldata.FromCity +'<br>callSid: '+ e.payload.calldata.CallSid +'</li>');
+        
         //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
         //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
     break;
