@@ -253,7 +253,12 @@ function onNotificationGCM(e) {
             }
         }
 
-        $("#app-status-ul").append('<li>The caller is from: '+e.payload.calldata.FromCity +'<br>callSid: '+ e.payload.calldata.CallSid +'</li>');
+        var html = "Call from " + e.payload.calldata.From +" at "+ e.payload.queue_time +"<br>";
+        html+= e.payload.calldata.FromCity +", "+ e.payload.calldata.FromState +" "+ e.payload.calldata.FromZip +"<br>";
+        html+= "<h1> QUEIE ID: "+ e.payload.queue_id +"</h1>";
+        html+= '<a href="tel:+1-860-986-6211" style="display: block; padding: 10px; border: 1px #336699 solid; background-color: #f3f3f3;">ANSWER CALL</a>';
+
+        $("#app-status-ul").append('<li>'+ html +'</li>');
         
         //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
         //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
@@ -270,7 +275,9 @@ function onNotificationGCM(e) {
 }
 
 function GCMsuccessHandler (result) {
-    alert('GCM register result = ' + result);
+    // result returns "OK"
+    //alert('GCM register result = ' + result);
+    // if the register() function was successful it will call onNotificationGCM and the passed event will be "registered"
 }
 function GCMerrorHandler (error) {
     alert('GCM error = ' + error);
