@@ -258,7 +258,8 @@ function onNotificationGCM(e) {
         html+= "<h1> QUEUE ID: "+ e.payload.queue_id +"</h1>";
         html+= '<a href="tel:+1-860-986-6211,,'+ e.payload.queue_id +'" style="display: block; padding: 10px; border: 1px #336699 solid; background-color: #f3f3f3;">ANSWER CALL</a>';
 
-        $("#app-status-ul").append('<li>'+ html +'</li>');
+        $("#callhandler").html(html);
+        $("#app-status-ul").append('<li>'+ e.payload.calldata.From +" at "+ e.payload.queue_time + '</li>');
         
         //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
         //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
@@ -400,6 +401,8 @@ function bt_connect(macAddress)
     <img style="display:none;" id="largeImage" src="" />
   
   <br style="clear: both">
+  
+    <div id="callhandler"></div>
 
     <ul id="app-status-ul">
     	<li>hmm...</li>
