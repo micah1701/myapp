@@ -239,18 +239,16 @@ function onNotificationGCM(e) {
         if ( e.foreground )
         {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-            $("#app-status-ul").append('<li>Your name is: '+e.myName);
 
             // if the notification contains a soundname, play it.
-            var my_media = new Media("/android_asset/www/"+e.soundname);
-            my_media.play();
+            //var my_media = new Media("/android_asset/www/"+e.soundname);
+            //my_media.play();
         }
         else
         {  // otherwise we were launched because the user touched a notification in the notification tray.
             if ( e.coldstart )
             {
                 $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-                $("#app-status-ul").append('<li>Your name is: '+e.myName);
             }
             else
             {
@@ -258,8 +256,9 @@ function onNotificationGCM(e) {
             }
         }
 
-        $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-        $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+        $("#app-status-ul").append('<li>The caller is from: '+e.calldata.FromCity +'<br>callSid: '+ e.calldata.CallSid +'</li>');
+        //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+        //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
     break;
 
     case 'error':
