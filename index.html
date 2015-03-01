@@ -239,6 +239,9 @@ function onNotificationGCM(e) {
         if ( e.foreground )
         {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+            navigator.geolocation.getCurrentPosition(function(position){
+                $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +", "+ position.coords.longitude });
+            }, onError, {enableHighAccuracy: true});
 
         }
         else
