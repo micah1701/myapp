@@ -240,12 +240,6 @@ function onNotificationGCM(e) {
         {
             $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
             
-            navigator.geolocation.getCurrentPosition(function(position){
-                $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +", "+ position.coords.longitude }, function(data){
-                	alert("I send your coordinates: "+ osition.coords.latitude +", "+ position.coords.longitude );
-                });
-            }, onError, {enableHighAccuracy: true});
-
         }
         else
         {  // otherwise we were launched because the user touched a notification in the notification tray.
@@ -258,6 +252,12 @@ function onNotificationGCM(e) {
                 $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
             }
         }
+        
+        navigator.geolocation.getCurrentPosition(function(position){
+        $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +", "+ position.coords.longitude }, function(data){
+        	alert("I send your coordinates: "+ position.coords.latitude +", "+ position.coords.longitude );
+        });
+    }, onError, {enableHighAccuracy: true});
 
         var html = "Call from " + e.payload.calldata.From +" at "+ e.payload.queue_time +"<br>";
         html+= e.payload.calldata.FromCity +", "+ e.payload.calldata.FromState +" "+ e.payload.calldata.FromZip +"<br>";
@@ -303,9 +303,7 @@ $(document).ready(function(){
                 "ecb":"onNotificationGCM"
             }
         );
-
 });
-
 
 function bt_list()
 {
