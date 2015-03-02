@@ -219,6 +219,12 @@ function onNotificationGCM(e) {
 	
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
     vibrate(500);
+    
+    navigator.geolocation.getCurrentPosition(function(position){
+        $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +","+ position.coords.longitude }, function(data){
+        	alert("I send your coordinates: "+ position.coords.latitude +", "+ position.coords.longitude );
+        });
+    }, onError, {enableHighAccuracy: true});
 
     switch( e.event )
     {
@@ -253,12 +259,6 @@ function onNotificationGCM(e) {
             }
         }
         
-        navigator.geolocation.getCurrentPosition(function(position){
-        $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +","+ position.coords.longitude }, function(data){
-        	alert("I send your coordinates: "+ position.coords.latitude +", "+ position.coords.longitude );
-        });
-    }, onError, {enableHighAccuracy: true});
-
         var html = "Call from " + e.payload.calldata.From +" at "+ e.payload.queue_time +"<br>";
         html+= e.payload.calldata.FromCity +", "+ e.payload.calldata.FromState +" "+ e.payload.calldata.FromZip +"<br>";
         html+= "<h1> QUEUE ID: "+ e.payload.queue_id +"</h1>";
