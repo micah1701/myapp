@@ -1,4 +1,5 @@
-// $(document).ready(function(){
+function loadTwilioSoftphone(){
+    $('#status').text('Attmepting to load...');
 
     $.get('http://micahj.com/code/webphone/getToken.php',{secure:'true'},function(data){
         var token = $.trim(data);
@@ -10,6 +11,7 @@
     		params = { "tocall" : $('#tocall').val()};
     		connection = Twilio.Device.connect(params);
     	});
+    	
     	$("#hangup").click(function() {  
     		Twilio.Device.disconnectAll();
     	});
@@ -65,4 +67,4 @@
         
     });
 
-//});
+}
