@@ -4,8 +4,6 @@ $(document).ready(function(){
         var token = $.trim(data);
         var connection=null;
         
-        alert("got a twilio token: "+ token);
-
         Twilio.Device.setup( token ); 
         
         $("#call").click(function() {  
