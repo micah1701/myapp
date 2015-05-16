@@ -7,6 +7,8 @@ function loadTwilioSoftphone(){
         
         Twilio.Device.setup(token); 
         
+        $('#status').text('token received: >|'+token+'|<');
+        
         $("#call").click(function() {  
     		params = { "tocall" : $('#tocall').val()};
     		connection = Twilio.Device.connect(params);
