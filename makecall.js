@@ -7,18 +7,9 @@ function loadTwilioSoftphone(){
         
         Twilio.Device.setup(token); 
         
-        $('#status').text('token received: >|'+token+'|<');
+        $('#status').text('token received but still offline...');
         
-        $("#call").click(function() {  
-    		params = { "tocall" : $('#tocall').val()};
-    		connection = Twilio.Device.connect(params);
-    	});
-    	
-    	$("#hangup").click(function() {  
-    		Twilio.Device.disconnectAll();
-    	});
-    
-    	Twilio.Device.ready(function (device) {
+        Twilio.Device.ready(function (device) {
     		$('#status').text('Ready to start call');
     	});
     
@@ -45,6 +36,15 @@ function loadTwilioSoftphone(){
     	Twilio.Device.disconnect(function (conn) {
     		$('#status').text("Call ended");
     		toggleCallStatus();
+    	});
+    	
+    	$("#call").click(function() {  
+    		params = { "tocall" : $('#tocall').val()};
+    		connection = Twilio.Device.connect(params);
+    	});
+    	
+    	$("#hangup").click(function() {  
+    		Twilio.Device.disconnectAll();
     	});
     	
     	function toggleCallStatus(){
