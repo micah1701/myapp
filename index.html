@@ -11,6 +11,9 @@
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCKLm37RXIidiDr2xogAP93as10aN-7vYo&sensor=false"></script>
 <script type="text/javascript" src="http://debug.phonegap.com/target/target-script-min.js#micah-myapp"></script>
 
+<script type="text/javascript" src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js"></script>
+<script type="text/javascript" src="makecall.js"></script>
+
 
 <script type="text/javascript" charset="utf-8">
 
@@ -219,12 +222,6 @@ function onNotificationGCM(e) {
 	
     $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
     vibrate(500);
-    
-    navigator.geolocation.getCurrentPosition(function(position){
-        $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +","+ position.coords.longitude }, function(data){
-        	alert("I send your coordinates: "+ position.coords.latitude +", "+ position.coords.longitude );
-        });
-    }, onError, {enableHighAccuracy: true});
 
     switch( e.event )
     {
@@ -259,6 +256,12 @@ function onNotificationGCM(e) {
             }
         }
         
+        navigator.geolocation.getCurrentPosition(function(position){
+        $.post("http://micahj.com/code/gcm/response.php",{ data: "I received your message", coords: position.coords.latitude +", "+ position.coords.longitude }, function(data){
+        	alert("I send your coordinates: "+ position.coords.latitude +", "+ position.coords.longitude );
+        });
+    }, onError, {enableHighAccuracy: true});
+
         var html = "Call from " + e.payload.calldata.From +" at "+ e.payload.queue_time +"<br>";
         html+= e.payload.calldata.FromCity +", "+ e.payload.calldata.FromState +" "+ e.payload.calldata.FromZip +"<br>";
         html+= "<h1> QUEUE ID: "+ e.payload.queue_id +"</h1>";
@@ -401,6 +404,8 @@ function bt_connect(macAddress)
     
     <button onclick="lottoTest_send()">test ajax post</button>
     
+    <br><br><a href="makecall.html">Make softphone call through twilio</a>
+    
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   
@@ -414,6 +419,42 @@ function bt_connect(macAddress)
   
     <div id="map_canvas" style="width: 100%; height: 250px;"></div>
   <br style="clear: both">
+  
+  <h2>web phone</h2>
+        <div align="center">
+			<!-- @start snippet -->
+			Number to call: <input type="text" id="tocall" value="">
+			<input type="button" id="call" value="Start Call"/>
+			<input type="button" id="hangup" value="Hangup Call" style="display:none;"/>
+			<div id="status">
+				Offline
+			</div>
+			<div id="dialpad" style="display:none;">
+				<table>
+				<tr>
+				<td><input type="button" value="1" id="button1"></td>
+				<td><input type="button" value="2" id="button2"></td>
+				<td><input type="button" value="3" id="button3"></td>
+				</tr>
+				<tr>
+				<td><input type="button" value="4" id="button4"></td>
+				<td><input type="button" value="5" id="button5"></td>
+				<td><input type="button" value="6" id="button6"></td>
+				</tr>
+				<tr>
+				<td><input type="button" value="7" id="button7"></td>
+				<td><input type="button" value="8" id="button8"></td>
+				<td><input type="button" value="9" id="button9"></td>
+				</tr>
+				<tr>
+				<td><input type="button" value="*" id="buttonstar"></td>
+				<td><input type="button" value="0" id="button0"></td>
+				<td><input type="button" value="#" id="buttonpound"></td>
+				</tr>
+				</table>
+			</div>
+			<!-- @end snippet -->
+		</div>
 
   </body>
 </html>
