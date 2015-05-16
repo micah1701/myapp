@@ -1,10 +1,10 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
     $.get('http://micahj.com/code/webphone/getToken.php',{secure:'true'},function(data){
         var token = $.trim(data);
         var connection=null;
         
-        Twilio.Device.setup( token ); 
+        Twilio.Device.setup(token); 
         
         $("#call").click(function() {  
     		params = { "tocall" : $('#tocall').val()};
@@ -65,4 +65,4 @@ $(document).ready(function(){
         
     });
 
-});
+//});
