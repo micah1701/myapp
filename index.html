@@ -26,7 +26,6 @@
     // PhoneGap is ready to be used!
     //
     function onDeviceReady() {
-        loadTwilioSoftphone();
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
     }
@@ -418,41 +417,5 @@ function bt_connect(macAddress)
     <div id="map_canvas" style="width: 100%; height: 250px;"></div>
   <br style="clear: both">
   
-  <h2>web phone</h2>
-        <div align="center">
-			<!-- @start snippet -->
-			Number to call: <input type="number" id="tocall" value="">
-			<input type="button" id="call" value="Start Call"/>
-			<input type="button" id="hangup" value="Hangup Call" style="display:none;"/>
-			<div id="status">
-				Offline (not loaded)
-			</div>
-			<div id="dialpad" style="display:none;">
-				<table>
-				<tr>
-				<td><input type="button" value="1" id="button1"></td>
-				<td><input type="button" value="2" id="button2"></td>
-				<td><input type="button" value="3" id="button3"></td>
-				</tr>
-				<tr>
-				<td><input type="button" value="4" id="button4"></td>
-				<td><input type="button" value="5" id="button5"></td>
-				<td><input type="button" value="6" id="button6"></td>
-				</tr>
-				<tr>
-				<td><input type="button" value="7" id="button7"></td>
-				<td><input type="button" value="8" id="button8"></td>
-				<td><input type="button" value="9" id="button9"></td>
-				</tr>
-				<tr>
-				<td><input type="button" value="*" id="buttonstar"></td>
-				<td><input type="button" value="0" id="button0"></td>
-				<td><input type="button" value="#" id="buttonpound"></td>
-				</tr>
-				</table>
-			</div>
-			<!-- @end snippet -->
-		</div>
-
   </body>
 </html>

@@ -43,9 +43,6 @@
 
 	<gap:plugin name="com.phonegap.plugins.barcodescanner" version="1.1.0" /> <!-- 3rd party plugin -->
 	
-	<gap:plugin name="com.twilio.client.TwilioClientService" src="libs/twilioclient-android.jar" />
-	<gap:plugin name="com.cordova.plugins.twilioclient" />
-	
 <!--
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
